@@ -49,49 +49,78 @@ The performance metrics that will be used to evaluate the models’ performance 
 # Original Data
 When using the original dataset without balancing the classes, the models shown in Table 1 did not perform well. It was expected that models would have poor performance with an unbalanced dataset. However, based on the performance metrics that received a percentage of over 80%, AU-ROC, and Accuracy would be the best metrics for evaluating which model performed well with unbalanced data. It is important to note that the performance metrics only show how well the models predicted a patient not having a brain stroke. This is because the original dataset has 95% of patients without a brain stroke and only 5% with a brain stroke. Based on the highest accuracy and AUROC scores, the Logistic Regression (LogR) model appears to be the best-performing model. According to the unbalanced data, the Naive Bayes model has the highest number of actual positives (309) and the lowest number of predicted negatives (66) based on the confusion metrics presented in Table 1a. These metrics will provide insight into how well the models perform once applied to the oversampled and undersampled data.
 
-Table 1: Original Dataset Performance Metrics
+Table 1: Original Dataset Performance Metrics![Table 1](https://github.com/user-attachments/assets/69412baf-6146-48d0-8ef2-1c6f92c59d03)
 
-Table 1a: Original Dataset Confusion Metrics
+Table 1a: Original Dataset Confusion Metrics![Table 1a](https://github.com/user-attachments/assets/32284e52-f959-4dc7-8140-c1a4124ca08f)
 
 To evaluate the most important features of predicting each patient's cause of a brain stroke, the Decision Tree was run with feature importances. Table 1b shows the most important variable for a random selection of 10 patients. These patients all seem to have gender as the most important variable that contributes to brain stroke. 
 
-Table 1b: Original Data Feature Importances
+Table 1b: Original Data Feature Importances![Table 1b](https://github.com/user-attachments/assets/93f782ef-52a1-47a0-869b-a53ec2f171bb)
 
 Looking at the dataset overall the most impactful feature is variable 2, “age”, with a score of 0.7658. The variables 7-9 are “avg_glucose_level”, “BMI”, and “smoking_status” which have a very low score that does not have a large impact on brain stroke but should be taken into account. Since the original data, under-sampled and over-sampled data have different numbers of observations, it is important to run feature importance separately for each case, as the results may vary.
 
-Table 1c: Original Data Feature Importance Score
+Table 1c: Original Data Feature Importance Score![Table 1c](https://github.com/user-attachments/assets/b07c5cc3-e327-470b-b1ab-13edd26258ba)
 
 # Under-Sampled
 After running models with under-sampling the results of their performance metrics were good. Table 2  is the under-sampled models based on all metrics. The XGBoost model has an F-score (87%), precision (79%), and recall (97%), which suggests that it is better at correctly identifying positive cases, while still maintaining a relatively low rate of false positives. It also has high accuracy (86%) and AUROC (0.97), indicating good overall performance. 
 
 For predicting brain stroke, a model with high recall as it is more important to correctly identify as many positive cases (i.e., cases where the patient had a brain stroke) as possible, even at the cost of a higher false positive rate. Therefore, based on the performance metrics, the Random Forest model has high accuracy (87%), F-score (89%), Precision (80%), and AU-ROC (96%), indicating that it performs well overall. It also has a very high recall (1.0), meaning that it is able to identify all positive cases correctly.  Looking at the confusion matrices, Table 2a, Gradient Boost (XGBoost) model predicted the most correct actual positives and actual negatives. The model only predicted 2 false negatives and 2 false positives. 
 
-Table 2: Under-Sampled Model Performance Metric 
+Table 2: Under-Sampled Model Performance Metric ![Table 2](https://github.com/user-attachments/assets/282484ee-e457-43c3-b803-ef2e777eb1d9)
 
-Table 2a: Under-Sampled Model Confusion Matrix
+Table 2a: Under-Sampled Model Confusion Matrix![Table 2a](https://github.com/user-attachments/assets/23de939b-2a60-402c-9098-1abdee97105c)
 
-Table 2b: shows the most important variable for a random selection of 10 patients. 
+Table 2b, shows the most important variable for a random selection of 10 patients. Under the under-sampled data, the most important feature for patient 457 is “gender”, while for patient 231 the variable “age”. Looking at Table 2c the overall under-sampled dataset the most impactful feature is variable 2, “age”, with a score of 0.9327. Variable 7, “BMI”, has a very low score that does not have a large impact on brain stroke but should be taken into account.
 
-Under the under-sampled data, the most important feature for patient 457 is “gender”, while for patient 231 the variable “age”. Looking at Table 2c the overall under-sampled dataset the most impactful feature is variable 2, “age”, with a score of 0.9327. Variable 7, “BMI”, has a very low score that does not have a large impact on brain stroke but should be taken into account.
+Table 2b: Under-sampled Data Feature Importances![Table 2b](https://github.com/user-attachments/assets/15eb5ef1-24b3-4268-b589-4b95aca9c320)
 
-Table 2b: Under-sampled Data Feature Importances
+Table 2c: Under-sampled Data Feature Importance Scores![Table 2c](https://github.com/user-attachments/assets/bd87d098-bbf6-4388-8fcf-c841e91bebeb)
 
-Table 2c: Under-sampled Data Feature Importance Scores
-
-Over-Sampling 
+# Over-Sampling 
 Additionally, the Random Forest (RandomF) model achieved a perfect score of 1.0 for all performance metrics, indicating a perfect ranking of positive and negative classes. However, this may also suggest an overfitting model. Ideally, a performance metric percentage between 90-75% is desired to evaluate whether the models are performing well and learning. Based on this understanding, the RandomF model may not be the best-performing model.
+
 In Table 3 and Table 3a, the models are trained using oversampled data. The XGBoost model achieved the highest overall performance score. The model's F-score (94%), precision (89%), and recall (99%) show that it correctly identified positive cases while maintaining a low rate of false positives. It also demonstrated high accuracy (93%) and AUROC (94%), indicating good overall performance. The XGBoost model identified 2533 true positives, which are cases where the model predicted a positive outcome. The model also predicted 3147 negatives, when the dataset only had 2821 true negatives. Therefore, the model predicted 326 positives and 326 negative cases under the XGBoost model. The second-best model would be the Decision Tree with the second-best confusion matrix and performance metrics.
 
-Table 3: Over-Sampled Model Performance Metric
+Table 3: Over-Sampled Model Performance Metric![Table 3](https://github.com/user-attachments/assets/6cc71e7e-be73-49f5-b78e-9bddec716a43)
 
 Table 3a: Over-Sampled Model Confusion Metrics
+![Table 3a](https://github.com/user-attachments/assets/637beafb-f0c2-479c-bc43-d45b568ccb43)
 
 Most significant variable for over-sampled data of 10 patients. Analysis shows that “age” (Variable 2) is the most important variable contributing to brain stroke in the majority of patients, while gender has a lower impact, being the most important variable for only 4 patients. “Hypertension” (Variable 3) and “avg_glucose_level” (Variable 7) have lower scores and less impact on brain stroke, but they should still be taken into account.
 
-Table 3b: Under-sampled Data Feature Importances
+Table 3b: Under-sampled Data Feature Importances<img width="217" alt="Table 3b" src="https://github.com/user-attachments/assets/4465abb8-9c5d-4146-a650-2a0773aa8568">
+
  
-Table 3c: Over-sampled data Feature Importance
-        
+Table 3c: Over-sampled data Feature Importance![Table 3c](https://github.com/user-attachments/assets/5e5d7ce6-fbad-415a-972f-a97bcc0d3274)
+
 # Conclusions
 A brain stroke can occur in individuals with high blood pressure, high cholesterol, heart disease, diabetes, high blood sugar, overweight, smoking habits, excessive drinking, or physical inactivity. Males and older individuals are more likely to suffer from a stroke. A stroke can result in severe long-lasting effects, including brain damage, disability, or even death. Therefore, identifying patients prone to stroke can help doctors prevent long-term brain damage and save more lives. Based on the dataset, models used and the results found that the under-sampled and over-sampled model of Extreme Gradient Boosting Decision Tree (XGBoost) is the best model for predicting brain stroke. The aim of this study was to not just predict stroke but also to determine the risk factors that are more likely to trigger a brain stroke. Based on the feature importance performed the variables “age” & “gender” have the most impact on predicting brain stroke. The continuation of this study would include getting a more detailed dataset with variables such as diabetes, heart disease, and other stroke risk factors to better assist in identifying patients prone to a brain stroke. 
+
+# References 
+Bajaj, A. (2023, February 17). Performance metrics in machine learning [complete 
+guide]. neptune.ai. Retrieved March 20, 2023, from https://neptune.ai/blog/performance-metrics-in-machine-learning-complete-guide
+
+Bandi, Vamsi, Debnath Bhattacharyya, and Divya Midhunchakkravarthy. "Prediction of 
+Brain Stroke Severity Using Machine Learning." Rev. d'Intelligence Artif. 34.6 (2020): 753-761.
+
+Centers for Disease Control and Prevention. (2022, November 2). About stroke. 
+Retrieved March 8, 2023, from https://www.cdc.gov/stroke/about.htm#:~:text=A%20stroke%2C%20sometimes%20called%20a,term%20disability%2C%20or%20even%20death.
+
+Dritsas Elias, and Maria Trigka. "Stroke risk prediction with machine learning 
+techniques." Sensors 22.13 (2022): 4670.
+
+Hossin, M., & Sulaiman, M. N. (2015). A review on evaluation metrics for data 
+classification evaluations. International journal of data mining & knowledge management process, 5(2)
+
+Kingsford, C., & Salzberg, S. L. (2008). What are decision trees?. Nature Biotechnology, 
+26(9), 1011-1013.
+
+Liu S., Mcgree J., Ge Z., Xie Y. (2016). Computational and statistical methods 
+for analyzing big data with applications. Academic Press.
+
+Ma, J., Yu, Z., Qu, Y., Xu, J., & Cao, Y. (2020). Application of the XGBoost machine 
+learning method in PM2. 5 Prediction: A case study of Shanghai. Aerosol and Air Quality Research, 20(1), 128-138.
+
+Schiöler, L., Söderberg, M., Rosengren, A., Järvholm, B., &amp; Torén, K. (2015). 
+Psychosocial work environment and risk of ischemic stroke and coronary heart disease: A prospective longitudinal study of 75 236 construction workers. Scandinavian Journal of Work, Environment &amp; Health, 41(3), 280–287. https://doi.org/10.5271/sjweh.3491
 
